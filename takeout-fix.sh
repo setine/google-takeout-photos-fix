@@ -43,6 +43,12 @@ exiftool -r -m \
     '-FileModifyDate<PhotoTakenTimeTimestamp' \
     -overwrite_original \
     "$DIR"
+exiftool -r -m \
+    -ext MP \
+    -if '$MediaModifyDate' \
+    '-FileModifyDate<MediaCreateDate' \
+    -overwrite_original \
+    "$DIR"
 
 echo "Deleting json metadata..."
 find "$DIR" -type f -name '*.meta' -delete
